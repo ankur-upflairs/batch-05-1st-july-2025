@@ -1,0 +1,12 @@
+html => hyper text markup language 
+//tag , element , attribute 
+
+tag => to tell the browser what to display and how to display 
+<p> opening tag 
+</p> closing tag 
+element => opening tag + content + closing tag
+<h1>hello everyone</h1>
+
+attribute => to give additional information about tag 
+
+<h1 align="center" >hello everyone</h1>
