@@ -1,0 +1,12 @@
+property_name:value;
+color:red;
+css declaration 
+{
+    font-size:50px;
+    background-color:red;
+}
+css rule :=
+selector {
+    color:red;
+}
+selector :- id , class , element selector 
