@@ -1,0 +1,17 @@
+create acount on github 
+=> username ,password , email
+download git 
+set up global user 
+cmd >> git config --global user.name "your_name"
+cmd >> git config --global user.email "your_email"
+
+create a repo on github => 
+public => readME =>git ignore tamplate => node
+
+clone this repo on local
+cmd>> git clone "repo_url" 
+==
+make changes in code and push this to github
+cmd>> git add .
+cmd>> git commit -m "message"
+cmd>> git push
