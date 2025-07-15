@@ -30,8 +30,10 @@ let c ='   xyz   '
 // console.log(b.replace('e','x'))
 // console.log(b.replaceAll('e','x'))
 let arr = b.split(' ')
-console.log(arr)
-console.log(arr.join(' '))
+// console.log(arr)
+// console.log(arr.join(' '))
+let x = " learn js "
+console.log(x.trim())
 
 /*
 What is the difference between str.charAt(2) and str[2]? Which one is preferred and why?
