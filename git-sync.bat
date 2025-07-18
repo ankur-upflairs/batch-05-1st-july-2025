@@ -1,22 +1,18 @@
 @echo off
 setlocal
 
-:: Change this to your commit message or leave blank for prompt
+:: Set fixed commit message
 set "commitMessage=code pushed"
-
-:: Ask for commit message (optional)
-set /p userInput="Enter commit message (or press Enter to use default): "
-if not "%userInput%"=="" set commitMessage=%userInput%
 
 :: Add all files
 git add .
 
-:: Commit changes
+:: Commit with fixed message
 git commit -m "%commitMessage%"
 
-:: Push to the current branch (assumes it's main or you're on a branch already set to track remote)
+:: Push to the current branch
 git push
 
 echo.
-echo ✅ Code pushed to GitHub successfully!
+echo ✅ Code pushed to GitHub with message: "%commitMessage%"
 pause
