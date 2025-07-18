@@ -16,8 +16,26 @@ let e = document.querySelector('.x')
 // console.log(a.innerHTML)
 // a.innerHTML = '<u>hello </u>'
 //changing styles of an element
-let btn = document.getElementById('btn')
+let btn = document.getElementById('btn') 
 //remove -(hyphen ) from property and convert it to camel case 
-btn.style.color= 'red'
-btn.style.backgroundColor = 'lightgreen'
+// btn.style.color= 'red' 
+// btn.style.backgroundColor = 'lightgreen' 
+
+function changeStyle(){
+    // alert('button clicked')
+    btn.style.fontSize='30px'
+}
+let button = document.getElementById('btn1')
+button.addEventListener('mouseover',function(){
+    a.style.backgroundColor= 'red'
+})
+button.addEventListener('mouseleave',function(){
+    a.style.backgroundColor= 'white'
+    
+})
+
+// make two button in html , one - shows a box on clikc and 
+//other - hide the box on click 
+
+
 
