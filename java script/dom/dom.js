@@ -32,6 +32,21 @@ button.addEventListener('mouseover',function(){
 button.addEventListener('mouseleave',function(){
     a.style.backgroundColor= 'white'
     
+}) 
+
+// let id = btn.getAttribute('id')
+// console.log(id)
+// btn.setAttribute('style','color:red;')
+let z = document.getElementById('abc')
+// console.log(z.classList)
+z.classList.remove('a')
+z.classList.add('d')
+// z.classList.toggle('d')
+
+//in a paragraph add title on a button click and also remove it
+// a button to change the theme
+document.querySelector('.btn2').addEventListener('click',function(){
+    z.setAttribute('title',"this is a paragraph")
 })
 
 // make two button in html , one - shows a box on clikc and 

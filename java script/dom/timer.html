@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        border: 1px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="start">start</button> <button id="stop">stop</button>
+    <div class="box"></div>
+    <script>
+      // let name = 'sunil'
+      // setInterval(()=>{
+      //     console.log(name)
+      // },1000)
+      let start = document.getElementById("start");
+      let stop = document.getElementById("stop");
+
+      let box = document.querySelector(".box");
+      let id;
+      start.addEventListener("click", function () {
+        let i = 0;
+        if (!id) {
+          id = setInterval(() => {
+            box.style.transform = `rotate(${i}deg)`;
+            i++;
+          }, 10);
+        }
+      });
+      stop.addEventListener("click", function () {
+        clearInterval(id);
+      });
+    </script>
+  </body>
+</html>
