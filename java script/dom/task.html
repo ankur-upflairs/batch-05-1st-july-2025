@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 1px;
+        height: 1px;
+        border: 1px solid;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="start">start</button> <button id="stop">stop</button>
+    <div class="box"></div>
+    <script>
+     
+      let start = document.getElementById("start");
+      let stop = document.getElementById("stop");
+
+      let box = document.querySelector(".box");
+      let id;
+      start.addEventListener("click", function () {
+        let i = 0;
+        let j = 0        
+        if (!id) {
+          id = setInterval(() => {
+            box.style.width=`${i}px`
+            box.style.height=`${j}px`
+            i++;j++;
+          }, 10);
+        }
+      });
+      stop.addEventListener("click", function () {
+        clearInterval(id);
+        // id=null
+      });
+    </script>
+  </body>
+</html>
