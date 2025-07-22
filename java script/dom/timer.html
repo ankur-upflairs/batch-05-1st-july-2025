@@ -20,23 +20,27 @@
       // setInterval(()=>{
       //     console.log(name)
       // },1000)
-      let start = document.getElementById("start");
-      let stop = document.getElementById("stop");
+      // let start = document.getElementById("start");
+      // let stop = document.getElementById("stop");
 
-      let box = document.querySelector(".box");
-      let id;
-      start.addEventListener("click", function () {
-        let i = 0;
-        if (!id) {
-          id = setInterval(() => {
-            box.style.transform = `rotate(${i}deg)`;
-            i++;
-          }, 10);
-        }
-      });
-      stop.addEventListener("click", function () {
-        clearInterval(id);
-      });
+      // let box = document.querySelector(".box");
+      // let id;
+      // start.addEventListener("click", function () {
+      //   let i = 0;
+      //   if (!id) {
+      //     id = setInterval(() => {
+      //       box.style.transform = `rotate(${i}deg)`;
+      //       i++;
+      //     }, 10);
+      //   }
+      // });
+      // stop.addEventListener("click", function () {
+      //   clearInterval(id);
+      // });
+      let timeOut = setTimeout(() => {
+        alert('time out  called')
+      }, 2000);
+      clearTimeout(timeOut)
     </script>
   </body>
 </html>
