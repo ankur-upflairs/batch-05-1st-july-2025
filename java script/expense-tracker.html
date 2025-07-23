@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="total"></div>
+    <input type="number" id="expense" />
+    
+    <button>add</button>
+    <ul class="box"></ul>
+    <script>
+        //[{amount:45,description:''}]
+        let input = document.getElementById("expense");
+        let btn = document.querySelector("button");
+        let box = document.querySelector(".box");
+        let totalBalance = document.querySelector('.total')
+        let localValue = localStorage.getItem('expenses')
+        if(localValue){
+            console.log(localValue)
+            expenses = JSON.parse(localValue)
+            createHtml()
+        }
+        else{ let expenses = []}
+      btn.addEventListener("click", () => {
+        let value = parseInt(input.value);
+        expenses.push(value);
+        input.value = "";
+        createHtml()
+        localStorage.setItem('expenses',JSON.stringify(expenses))
+        // console.log(expenses)
+    });
+    function createHtml(){
+          let expenseHtml = "";
+         expenses.forEach((v) => {
+          if (v >= 0) {
+            expenseHtml += `
+                <li style="color:green;">Income :  ${v}</li>`;
+          }
+          else {
+             expenseHtml += `
+                <li style="color:red;">Expense :  ${v}</li>`;
+          }
+        });
+        let total = expenses.reduce((pre,curr,index)=>pre+curr,0)
+        totalBalance.innerHTML = total
+        box.innerHTML = expenseHtml;
+      }
+    </script>
+  </body>
+</html>
