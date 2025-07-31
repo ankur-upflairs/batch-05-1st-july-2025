@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { taskContext } from "./TaskContext";
 
 function Tasks() {
+  const {tasks} = useContext(taskContext);
   return (
-     <main>
-    <h2>Welcome to Task Manager</h2>
-    <p>Manage your tasks efficiently with this simple system.</p>
-
-    <section class="task-section">
+    <main>
+      <h2>Welcome to Task Manager</h2>
+      <p>Manage your tasks efficiently with this simple system.</p>
+      <section class="task-section">
+        <h3>Recent Tasks</h3>
+        {tasks.map((task, i) => {
+          return (
+            <div class="task-card">
+              <h4>{task.title}</h4>
+              <p>{task.description}</p>
+              <p>
+                <strong>Due:</strong> {task.date}
+              </p>
+            </div>
+          );
+        })}
+      </section>
+      {/* <section class="task-section">
       <h3>Recent Tasks</h3>
       <div class="task-card">
         <h4>Submit Project Report</h4>
@@ -23,10 +38,9 @@ function Tasks() {
         <p>Discuss feedback and future plans.</p>
         <p><strong>Due:</strong> 2025-05-10</p>
       </div>
-    </section>
-  </main>
-
-  )
+    </section> */}
+    </main>
+  );
 }
 
-export default Tasks
+export default Tasks;

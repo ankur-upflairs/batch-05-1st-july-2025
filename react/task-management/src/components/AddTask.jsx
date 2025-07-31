@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { taskContext } from './TaskContext'
 
 function AddTask() {
+    const {addTask} = useContext(taskContext)
     const [task,setTask] = useState({
         title:'',
         description: '',
@@ -11,6 +13,12 @@ function AddTask() {
     }
     function handleSubmit(e) {
        e.preventDefault()
+       addTask(task) 
+       setTask({
+        title:'',
+        description: '',
+        date:''
+    })
        console.log(task)
     }
   return (
@@ -18,11 +26,11 @@ function AddTask() {
     <h2>Add New Task</h2>
     <form onSubmit={handleSubmit}  >
       <label>Title</label>
-      <input onChange={handleChange} type="text" name="title" placeholder="Enter task title" required />
+      <input onChange={handleChange} value={task.title} type="text" name="title" placeholder="Enter task title" required />
       <label>Description</label>
-      <textarea onChange={handleChange} name="description" placeholder="Task description"></textarea>
+      <textarea onChange={handleChange} value={task.description} name="description" placeholder="Task description"></textarea>
       <label>Due Date</label>
-      <input onChange={handleChange} name="date" type="date" />
+      <input onChange={handleChange} value={task.date} name="date" type="date" />
       <button type="submit">Add Task</button>
     </form>
   </main>
