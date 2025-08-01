@@ -12,8 +12,8 @@ function DataFetch() {
     //npm i axios => get/post/put/delete
     useEffect(()=>{
         async function getData(){
-           let res = await axios.get('https://dummyjson.com/posts')
-            console.log(res.data)
+           let res = await axios.get('https://dummyjson.com/posts') 
+            // console.log(res.data) 
             setPosts(res.data.posts)
         }
         getData()
@@ -21,7 +21,12 @@ function DataFetch() {
     
   return (
     <div>
-        
+        {posts.map((post,i)=>{
+            return <div style={{width:'70%',margin:'10px auto',border:'1px solid'}}>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+            </div>
+        })}
     </div>
   )
 }
