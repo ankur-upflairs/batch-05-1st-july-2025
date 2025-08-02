@@ -22,7 +22,7 @@ function ViewTask() {
   return (
     <>
       {isEdit ? (
-        <UpdateTask id={isEdit} setIsEdit={setIsEdit} />
+        <UpdateTask id={isEdit} setIsEdit={setIsEdit} setIsChange={setIsChange} />
       ) : (
         <main>
           <h2>Task List</h2>
