@@ -1,83 +1,62 @@
-import React,{useState,useEffect} from 'react'
-import axios from 'axios'
+import React, { useState, useEffect, use } from "react";
+import axios from "axios";
+import UpdateTask from "./UpdateTask";
 function ViewTask() {
-  const [tasks,setTasks] = useState([])
+  const [tasks, setTasks] = useState([]);
+  const [isChange, setIsChange] = useState(true);
+  const [isEdit, setIsEdit] = useState(null);
   useEffect(() => {
     async function getData() {
-      let res = await axios.get('http://localhost:3000/tasks')
-      setTasks(res.data)
+      let res = await axios.get("http://localhost:3000/tasks");
+      setTasks(res.data);
     }
-  getData()    
-  },[])
+    getData();
+  }, [isChange]);
+  async function deleteTask(id) {
+    await axios.delete("http://localhost:3000/tasks/" + id);
+    setIsChange(!isChange);
+  }
+  function handleEdit(id) {
+    setIsEdit(id)
+  }
   return (
-     <main>
-    <h2>Task List</h2>
-    <table>
-      <thead>
-        <tr><th>Title</th><th>Description</th><th>Due</th><th>Actions</th></tr>
-      </thead>
-      <tbody>
-        {tasks.map(task=>{
-          return  <tr>
-          <td>{task.title}</td>
-          <td>{task.description}</td>
-          <td>{task.delete}</td>
-          <td>
-            <a href="update.html">Edit</a> |
-            <a href="#" onclick="deleteTask(this)">Delete</a>
-          </td>
-        </tr>
-        })}
-        {/* <tr>
-          <td>Example Task</td>
-          <td>Sample description</td>
-          <td>2025-05-10</td>
-          <td>
-            <a href="update.html">Edit</a> |
-            <a href="#" onclick="deleteTask(this)">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Submit Project Report</td>
-          <td>Finalize and email the project report.</td>
-          <td>2025-05-07</td>
-          <td>
-            <a href="update.html">Edit</a> |
-            <a href="#" onclick="deleteTask(this)">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Buy Groceries</td>
-          <td>Milk, bread, eggs, and vegetables.</td>
-          <td>2025-05-08</td>
-          <td>
-            <a href="update.html">Edit</a> |
-            <a href="#" onclick="deleteTask(this)">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Client Meeting</td>
-          <td>Zoom meeting to discuss project updates.</td>
-          <td>2025-05-09</td>
-          <td>
-            <a href="update.html">Edit</a> |
-            <a href="#" onclick="deleteTask(this)">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Pay Electricity Bill</td>
-          <td>Due this week to avoid late charges.</td>
-          <td>2025-05-11</td>
-          <td>
-            <a href="update.html">Edit</a> |
-            <a href="#" onclick="deleteTask(this)">Delete</a>
-          </td>
-        </tr> */}
-      </tbody>
-    </table>
-  </main>
-
-  )
+    <>
+      {isEdit ? (
+        <UpdateTask id={isEdit} setIsEdit={setIsEdit} />
+      ) : (
+        <main>
+          <h2>Task List</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Due</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tasks.map((task) => {
+                return (
+                  <tr>
+                    <td>{task.title}</td>
+                    <td>{task.description}</td>
+                    <td>{task.date}</td>
+                    <td>
+                      <button onClick={()=>handleEdit(task.id)}>Edit</button> |{" "}
+                      <button onClick={() => deleteTask(task.id)}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </main>
+      )}
+    </>
+  );
 }
 
-export default ViewTask
+export default ViewTask;

@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react'
 import { taskContext } from './TaskContext'
 import axios from 'axios'
 
-function AddTask() {
-    
-    const [task,setTask] = useState({
+function UpdateTask({id,setIsEdit}) {
+ const [task,setTask] = useState({
         title:'',
         description: '',
         date:''
@@ -37,9 +36,11 @@ function AddTask() {
       <label>Due Date</label>
       <input onChange={handleChange} value={task.date} name="date" type="date" />
       <button type="submit">Add Task</button>
+      <button onClick={()=>setIsEdit(null)} type="button">Cancel</button>
+
     </form>
   </main>
   )
 }
 
-export default AddTask
+export default UpdateTask

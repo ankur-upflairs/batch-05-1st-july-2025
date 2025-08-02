@@ -6,9 +6,10 @@ function Tasks() {
   useEffect(() => {
     async function getData() {
       let res = await axios.get('http://localhost:3000/tasks')
+      console.log(res.data)
       setTasks(res.data)
-    }
-  getData()    
+    } 
+  getData()  
   },[])
   
   return (
