@@ -1,1 +1,2 @@
-new file created
+sample.txt is edited in background
+file is appended

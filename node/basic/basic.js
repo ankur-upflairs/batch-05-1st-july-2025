@@ -29,5 +29,22 @@ const fs = require('node:fs')
 // fs.writeFileSync('sample.txt','new file created')
 // fs.appendFileSync('sample1.txt','\nnew file creaated')
 
+//async function =>
+
+// fs.readFile('sample.txt','utf-8',(err,data)=>{
+//     if(!err){
+//         console.log(data)
+//     }    
+// })
+
+// fs.writeFile('sample.txt','sample.txt is edited in background',(err)=>{
+//     if(err) console.log(err)
+// })
+// fs.appendFile('sample.txt','\nfile is appended',(err)=>{
+//     if(err) console.log(err)
+// })
+
+
+
 
 
