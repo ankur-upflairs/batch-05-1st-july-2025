@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose')
 var dotenv = require('dotenv')
-
+var cors = require('cors')
 
 dotenv.config()
 mongoose.connect(process.env.DB_URI)
@@ -11,7 +11,7 @@ let courseRouter = require('./routes/courseRoute')
 
 var app = express();
 
-
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

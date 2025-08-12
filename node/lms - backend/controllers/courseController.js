@@ -12,5 +12,10 @@ exports.createCourse = async (req,res) =>{
     res.json({success:true, message:'new course created'})
 }
 
+exports.getSingleCourse = async (req,res)=>{
+    let {id} = req.params
+    let course = await Courses.findById(id)
+    res.json({success:true,course})
+}
 
 
