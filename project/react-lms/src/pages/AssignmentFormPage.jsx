@@ -2,12 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import AssignmentForm from '../components/AssignmentForm';
 import { initialAssignments, initialCourses } from '../data';
+import axios from 'axios';
 
 const AssignmentFormPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [assignment, setAssignment] = useState(null);
+  const [course,setCourse] = useState([])
   const isEdit = !!id;
+   useEffect(() => {
+    // In a real app, these would be API calls
+   async function getData() {
+    let res = await axios.get('http://localhost:3000/courses')
+    setCourse(res.data.courses)
+   }
+   getData()
+    
+  }, []);
 
   useEffect(() => {
     if (isEdit) {
@@ -17,26 +28,32 @@ const AssignmentFormPage = () => {
     }
   }, [id, isEdit]);
 
-  const handleSubmit = (formData) => {
+  const handleSubmit =async (formData) => {
     if (isEdit) {
       // In a real app, this would update the assignment in the database
       console.log('Updating assignment:', { ...assignment, ...formData });
     } else {
       // In a real app, this would add a new assignment to the database
-      const newAssignment = {
-        ...formData,
-        id: Math.max(...initialAssignments.map(a => a.id)) + 1,
-        createdAt: new Date().toISOString().split('T')[0]
-      };
-      console.log('Adding new assignment:', newAssignment);
-    }
+    //   const newAssignment = {
+    //     ...formData,
+    //     id: Math.max(...initialAssignments.map(a => a.id)) + 1,
+    //     createdAt: new Date().toISOString().split('T')[0]
+    //   };
+    //   console.log('Adding new assignment:', newAssignment);
+     await axios.post('http://localhost:3000/assignments',formData)
+
+  }
+
     navigate('/assignments');
   };
-
+  console.log(course)
+  if(course.length == 0 ){
+    return null
+  }
   return (
     <AssignmentForm
       assignment={assignment}
-      courses={initialCourses}
+      courses={course}
       onSubmit={handleSubmit}
       isEdit={isEdit}
     />

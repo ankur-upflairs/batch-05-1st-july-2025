@@ -9,7 +9,7 @@ const AssignmentList = ({ assignments, courses }) => {
   // Create a list of course options for filtering
   const courseOptions = [
     { id: 'All', name: 'All Courses' },
-    ...courses.map(course => ({ id: course.id, name: course.name }))
+    ...courses.map(course => ({ id: course._id, name: course.name }))
   ];
 
   // Filter assignments based on search term and course filter
@@ -51,7 +51,7 @@ const AssignmentList = ({ assignments, courses }) => {
             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             {courseOptions.map(option => (
-              <option key={option.id} value={option.id}>{option.name}</option>
+              <option key={option._id} value={option._id}>{option.name}</option>
             ))}
           </select>
         </div>
@@ -83,7 +83,7 @@ const AssignmentList = ({ assignments, courses }) => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {filteredAssignments.map((assignment) => {
-              const course = courses.find(c => c.id === assignment.courseId) || { name: 'Unknown Course' };
+              const course = courses.find(c => c._id === assignment.courseId) || { name: 'Unknown Course' };
               return (
                 <tr key={assignment.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -102,7 +102,7 @@ const AssignmentList = ({ assignments, courses }) => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <BookOpen className="h-4 w-4 text-gray-400 mr-2" />
-                      <Link to={`/courses/${course.id}`} className="text-sm text-blue-600 hover:text-blue-900">
+                      <Link to={`/courses/${course._id}`} className="text-sm text-blue-600 hover:text-blue-900">
                         {course.name}
                       </Link>
                     </div>
@@ -128,7 +128,7 @@ const AssignmentList = ({ assignments, courses }) => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
                       <Link
-                        to={`/assignments/${assignment.id}`}
+                        to={`/assignments/${assignment._id}`}
                         className="text-blue-600 hover:text-blue-900 p-2 hover:bg-blue-50 rounded"
                       >
                         <Eye className="w-4 h-4" />
